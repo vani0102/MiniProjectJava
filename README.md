@@ -48,6 +48,13 @@ src/
 ```
 
 ---
+---
+
+## 🏗️ System Architecture
+
+Frontend (UI) → Spring Boot REST API → Processing Modules (Speech + NLP) → MySQL Database  
+
+The system follows a layered architecture ensuring modularity, scalability, and easy integration of components.
 
 ## How It Works
 
@@ -137,8 +144,7 @@ Model model = new Model("model");
 ## Author
 
 Vani Sharma
-
----
+Aamena Sheikh 
 
 ## License
 
