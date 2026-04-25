@@ -4,28 +4,30 @@ import java.util.Set;
 
 public class SentimentAnalyzer {
 
-    static Set<String> positive = Set.of(
-            "good", "great", "amazing", "nice", "love"
-    );
+    private static final String[] positiveWords = {
+            "good", "great", "awesome", "happy", "excellent", "love"
+    };
 
-    static Set<String> negative = Set.of(
-            "bad", "terrible", "hate", "awful"
-    );
+    private static final String[] negativeWords = {
+            "bad", "sad", "terrible", "hate", "worst", "angry"
+    };
 
     public static String analyze(String text) {
+        if (text == null || text.isEmpty()) return "neutral";
 
         int score = 0;
+        String lower = text.toLowerCase();
 
-        text = text.toLowerCase().replaceAll("[^a-z ]", "");
-        String[] words = text.split("\\s+");
-
-        for (String word : words) {
-            if (positive.contains(word)) score++;
-            if (negative.contains(word)) score--;
+        for (String word : positiveWords) {
+            if (lower.contains(word)) score++;
         }
 
-        if (score > 0) return "Positive";
-        if (score < 0) return "Negative";
-        return "Neutral";
+        for (String word : negativeWords) {
+            if (lower.contains(word)) score--;
+        }
+
+        if (score > 0) return "positive";
+        if (score < 0) return "negative";
+        return "neutral";
     }
 }

@@ -4,20 +4,18 @@ import java.util.Set;
 
 public class FumbleDetector {
 
-    static Set<String> fillers = Set.of(
-            "uh", "um", "like", "hmm", "ah"
-    );
+    private static final String[] fillers = {
+            "um", "uh", "like", "you know", "so", "actually", "basically"
+    };
 
     public static int countFumbles(String text) {
+        if (text == null) return 0;
 
         int count = 0;
+        String lower = text.toLowerCase();
 
-        String[] words = text.toLowerCase().split(" ");
-
-        for (String word : words) {
-            if (fillers.contains(word)) {
-                count++;
-            }
+        for (String filler : fillers) {
+            count += lower.split("\\b" + filler + "\\b").length - 1;
         }
 
         return count;

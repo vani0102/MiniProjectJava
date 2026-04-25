@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeakStreak</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <script src="/_sdk/element_sdk.js"></script>......this is the ui code i generated from canva , now connect it to the existing project and a backend(sql) so that connects with the java part on intelliJ.
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+    <style>
+        html, body { height: 100%; margin: 0; }
+        * { box-sizing: border-box; }
+
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(2deg); }
+        }
+        @keyframes pulse-ring {
+          0% { transform: scale(0.8); opacity: 0.6; }
+          50% { transform: scale(1.2); opacity: 0.2; }
+          100% { transform: scale(0.8); opacity: 0.6; }
+        }
+        @keyframes wave-bar {
+          0%, 100% { height: 20%; }
+          50% { height: 90%; }
+        }
+        @keyframes fade-up {
+          from { opacity: 0; transform: translateY(40px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes glow-pulse {
+          0%, 100% { filter: drop-shadow(0 0 15px var(--accent)); }
+          50% { filter: drop-shadow(0 0 40px var(--accent)); }
+        }
+        @keyframes shimmer {
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
+        }
+        @keyframes orbit {
+          0% { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+          100% { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+        }
+        @keyframes sentiment-shift {
+          0%, 20% { color: #22d3ee; content: "😊 Positive"; }
+          33%, 53% { color: #f59e0b; content: "😐 Neutral"; }
+          66%, 86% { color: #f43f5e; content: "😠 Negative"; }
+        }
+
+        .fade-up { animation: fade-up 0.8s ease-out both; }
+        .fade-up-1 { animation-delay: 0.1s; }
+        .fade-up-2 { animation-delay: 0.25s; }
+        .fade-up-3 { animation-delay: 0.4s; }
+        .fade-up-4 { animation-delay: 0.55s; }
+
+        .wave-bar { animation: wave-bar 1.2s ease-in-out infinite; }
+
+        .shimmer-text {
+          background: linear-gradient(90deg, var(--accent) 0%, #fff 50%, var(--accent) 100%);
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: shimmer 3s linear infinite;
+        }
+
+        .orbit-dot { animation: orbit 8s linear infinite; }
+        .orbit-dot-2 { animation: orbit 12s linear infinite reverse; }
+        .orbit-dot-3 { animation: orbit 6s linear infinite; animation-delay: -3s; }
+
+        .feature-card {
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+        }
+        .feature-card:hover {
+          transform: translateY(-8px) scale(1.02);
+        }
+
+        .sentiment-demo {
+          font-family: 'Space Mono', monospace;
+        }
+
+        .glass {
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+        }
+
+        :root {
+          --bg: #0a0a0f;
+          --surface: #13131f;
+          --text: #e8e6f0;
+          --accent: #22d3ee;
+          --accent2: #8b5cf6;
+        }
+    </style>
+    <style>body { box-sizing: border-box; }</style>
+    <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+</head>
+<body class="h-full" style="background: var(--bg); color: var(--text); font-family: 'Syne', sans-serif;"><!-- Login Page -->
+<div id="login-page" class="w-full h-full overflow-auto" style="background: var(--bg); position: relative;"><!-- Ambient BG -->
+    <div style="position:fixed;inset:0;pointer-events:none;z-index:0;">
+        <div style="position:absolute;top:10%;left:15%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(34,211,238,0.08),transparent 70%);animation:pulse-ring 6s ease-in-out infinite;"></div>
+        <div style="position:absolute;bottom:20%;right:10%;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,0.08),transparent 70%);animation:pulse-ring 8s ease-in-out infinite;"></div>
+    </div><!-- Login Container -->
+    <div style="position: relative; z-index: 10; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 2rem;">
+        <div class="glass" style="border-radius:28px;background:rgba(19,19,31,0.9);border:1px solid rgba(255,255,255,0.08);padding:3rem;max-width:420px;width:100%;animation:fade-up 0.6s ease-out both;"><!-- Logo & Title -->
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:2.5rem;justify-content:center;">
+                <div style="width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;">
+                    <i data-lucide="audio-waveform" style="width:26px;height:26px;color:#0a0a0f;"></i>
+                </div>
+                <h1 style="font-size:1.8rem;font-weight:800;letter-spacing:-0.02em;margin:0;font-family:'Syne',sans-serif;">SpeakStreak</h1>
+            </div>
+            <p style="text-align:center;opacity:0.6;margin:0 0 2rem;font-size:0.95rem;">Sign in to your account</p><!-- Form -->
+            <form id="login-form" onsubmit="handleLogin(event)" style="display:flex;flex-direction:column;gap:1.2rem;"><!-- Email Input -->
+                <div><label style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:0.6rem;opacity:0.8;">Email Address</label> <input type="email" id="login-email" placeholder="you@example.com" required style="width:100%;padding:12px 16px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--text);font-size:0.95rem;outline:none;transition:border-color 0.3s;font-family:'Space Mono',monospace;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+                </div><!-- Password Input -->
+                <div><label style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:0.6rem;opacity:0.8;">Password</label> <input type="password" id="login-password" placeholder="••••••••" required style="width:100%;padding:12px 16px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--text);font-size:0.95rem;outline:none;transition:border-color 0.3s;font-family:'Space Mono',monospace;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+                </div><!-- Remember Me -->
+                <div style="display:flex;align-items:center;gap:8px;font-size:0.9rem;"><input type="checkbox" id="remember-me" style="width:18px;height:18px;cursor:pointer;accent-color:var(--accent);"> <label for="remember-me" style="cursor:pointer;opacity:0.7;">Remember me</label>
+                </div><!-- Submit Button --> <button type="submit" style="padding:14px 32px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0a0a0f;font-weight:700;font-size:1rem;border:none;cursor:pointer;font-family:'Syne',sans-serif;transition:transform 0.2s,box-shadow 0.3s;margin-top:0.5rem;" onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 8px 30px rgba(34,211,238,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'"> Sign In </button>
+            </form><!-- Divider -->
+            <div style="display:flex;align-items:center;gap:12px;margin:1.5rem 0;opacity:0.3;">
+                <div style="flex:1;height:1px;background:rgba(255,255,255,0.1);"></div><span style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">or</span>
+                <div style="flex:1;height:1px;background:rgba(255,255,255,0.1);"></div>
+            </div><!-- Social Buttons -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem;"><button type="button" onclick="handleSocialLogin('google')" style="padding:12px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--text);font-weight:600;font-size:0.9rem;cursor:pointer;transition:background 0.3s;" onmouseover="this.style.background='rgba(34,211,238,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'"> <i data-lucide="mail" style="width:16px;height:16px;display:inline;margin-right:6px;vertical-align:text-bottom;"></i> Google </button> <button type="button" onclick="handleSocialLogin('github')" style="padding:12px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--text);font-weight:600;font-size:0.9rem;cursor:pointer;transition:background 0.3s;" onmouseover="this.style.background='rgba(139,92,246,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'"> <i data-lucide="github" style="width:16px;height:16px;display:inline;margin-right:6px;vertical-align:text-bottom;"></i> GitHub </button>
+            </div><!-- Sign Up Link -->
+            <p style="text-align:center;opacity:0.5;font-size:0.9rem;margin:0;">Don't have an account? <a href="#" onclick="toggleSignUp(event)" style="color:var(--accent);text-decoration:none;font-weight:600;transition:opacity 0.3s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Sign up</a></p>
+        </div>
+    </div>
+</div><!-- Main App -->
+<div id="app-wrapper" class="w-full h-full overflow-auto" style="display:none;">
+    <!-- Ambient BG -->
+    <div style="position:fixed;inset:0;pointer-events:none;z-index:0;">
+        <div style="position:absolute;top:10%;left:15%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(34,211,238,0.08),transparent 70%);animation:pulse-ring 6s ease-in-out infinite;"></div>
+        <div style="position:absolute;bottom:20%;right:10%;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,0.08),transparent 70%);animation:pulse-ring 8s ease-in-out infinite;"></div>
+    </div><!-- Nav -->
+    <header class="w-full relative z-10" style="border-bottom:1px solid rgba(255,255,255,0.05);">
+        <nav class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;">
+                    <i data-lucide="audio-waveform" style="width:22px;height:22px;color:#0a0a0f;"></i>
+                </div><span id="nav-brand" style="font-weight:800;font-size:1.3rem;letter-spacing:-0.02em;">SpeakStreak</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8" style="font-size:0.9rem;font-weight:600;">
+                <a href="#features" style="color:var(--text);opacity:0.7;text-decoration:none;transition:opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Features</a> <a href="#demo" style="color:var(--text);opacity:0.7;text-decoration:none;transition:opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Demo</a> <a href="#cta" style="color:var(--text);opacity:0.7;text-decoration:none;transition:opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Get Started</a>
+            </div>
+        </nav>
+    </header><!-- Hero -->
+    <section class="relative z-10 max-w-6xl mx-auto px-6 pt-16 pb-20 md:pt-24 md:pb-28">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="fade-up fade-up-1" style="display:inline-block;padding:6px 16px;border-radius:100px;background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.2);font-size:0.8rem;font-weight:600;color:var(--accent);margin-bottom:1.5rem;font-family:'Space Mono',monospace;">
+                    ☕ Java-Powered AI
+                </div>
+                <h1 id="hero-title" class="fade-up fade-up-2 shimmer-text" style="font-size:clamp(2.8rem,6vw,4.5rem);font-weight:800;line-height:1.05;letter-spacing:-0.03em;margin:0 0 1rem;">SpeakStreak</h1>
+                <p id="hero-subtitle" class="fade-up fade-up-3" style="font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:600;margin:0 0 1rem;opacity:0.85;">Speech &amp; Sentiment Recognition</p>
+                <p id="hero-description" class="fade-up fade-up-4" style="font-size:1rem;line-height:1.7;opacity:0.6;max-width:480px;margin:0 0 2rem;">Powered by Java — decode spoken words and detect the emotions behind them in real-time. From voice transcription to sentiment analysis, all in one streak.</p>
+                <div class="fade-up fade-up-4 flex flex-wrap gap-4">
+                    <a href="#cta" style="display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0a0a0f;font-weight:700;font-size:0.95rem;text-decoration:none;transition:transform 0.3s,box-shadow 0.3s;" onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 8px 30px rgba(34,211,238,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'"> <i data-lucide="mic" style="width:18px;height:18px;"></i> Get Started </a> <a href="#features" style="display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:14px;border:1px solid rgba(255,255,255,0.12);color:var(--text);font-weight:700;font-size:0.95rem;text-decoration:none;transition:border-color 0.3s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)'"> Explore <i data-lucide="arrow-down" style="width:16px;height:16px;"></i> </a>
+                </div>
+            </div><!-- Waveform Visual -->
+            <div class="fade-up fade-up-3 flex items-center justify-center" style="min-height:320px;">
+                <div style="position:relative;width:280px;height:280px;">
+                    <!-- Orbiting dots -->
+                    <div style="position:absolute;inset:0;">
+                        <div class="orbit-dot" style="position:absolute;top:50%;left:50%;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 20px var(--accent);margin:-5px;"></div>
+                        <div class="orbit-dot-2" style="position:absolute;top:50%;left:50%;width:8px;height:8px;border-radius:50%;background:var(--accent2);box-shadow:0 0 20px var(--accent2);margin:-4px;"></div>
+                        <div class="orbit-dot-3" style="position:absolute;top:50%;left:50%;width:6px;height:6px;border-radius:50%;background:#f59e0b;box-shadow:0 0 15px #f59e0b;margin:-3px;"></div>
+                    </div><!-- Center mic icon -->
+                    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                        <div style="width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,rgba(34,211,238,0.15),rgba(139,92,246,0.15));border:2px solid rgba(34,211,238,0.3);display:flex;align-items:center;justify-content:center;animation:glow-pulse 3s ease-in-out infinite;">
+                            <i data-lucide="mic" style="width:40px;height:40px;color:var(--accent);"></i>
+                        </div>
+                    </div><!-- Waveform bars -->
+                    <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:4px;align-items:flex-end;height:60px;">
+                        <div class="wave-bar" style="width:4px;border-radius:4px;background:var(--accent);animation-delay:0s;"></div>
+                        <div class="wave-bar" style="width:4px;border-radius:4px;background:var(--accent);opacity:0.8;animation-delay:0.15s;"></div>
+                        <div class="wave-bar" style="width:4px;border-radius:4px;background:var(--accent2);animation-delay:0.3s;"></div>
+                        <div class="wave-bar" style="width:4px;border-radius:4px;background:var(--accent2);opacity:0.8;animation-delay:0.45s;"></div>
+                        <div class="wave-bar" style="width:4px;border-radius:4px;background:var(--accent);animation-delay:0.6s;"></div>
+                        <div class="wave-bar" style="width:4px;border-radius:4px;background:var(--accent);opacity:0.7;animation-delay:0.75s;"></div>
+                        <div class="wave-bar" style="width:4px;border-radius:4px;background:var(--accent2);animation-delay:0.9s;"></div>
+                        <div class="wave-bar" style="width:4px;border-radius:4px;background:var(--accent2);opacity:0.6;animation-delay:1.05s;"></div>
+                        <div class="wave-bar" style="width:4px;border-radius:4px;background:var(--accent);animation-delay:0.2s;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- Features -->
+    <section id="features" class="relative z-10 max-w-6xl mx-auto px-6 py-20">
+        <h2 id="features-heading" class="text-center" style="font-size:clamp(2rem,4vw,2.8rem);font-weight:800;letter-spacing:-0.02em;margin:0 0 3.5rem;">Core Capabilities</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="feature-card glass" style="padding:2rem;border-radius:20px;background:rgba(19,19,31,0.7);border:1px solid rgba(255,255,255,0.06);">
+                <div style="width:48px;height:48px;border-radius:14px;background:rgba(34,211,238,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;">
+                    <i data-lucide="mic" style="width:24px;height:24px;color:var(--accent);"></i>
+                </div>
+                <h3 style="font-size:1.15rem;font-weight:700;margin:0 0 0.6rem;">Speech Recognition</h3>
+                <p style="font-size:0.9rem;line-height:1.6;opacity:0.55;margin:0;">Convert spoken words to text with high accuracy using Java's audio processing pipeline.</p>
+            </div>
+            <div class="feature-card glass" style="padding:2rem;border-radius:20px;background:rgba(19,19,31,0.7);border:1px solid rgba(255,255,255,0.06);">
+                <div style="width:48px;height:48px;border-radius:14px;background:rgba(139,92,246,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;">
+                    <i data-lucide="heart" style="width:24px;height:24px;color:var(--accent2);"></i>
+                </div>
+                <h3 style="font-size:1.15rem;font-weight:700;margin:0 0 0.6rem;">Sentiment Analysis</h3>
+                <p style="font-size:0.9rem;line-height:1.6;opacity:0.55;margin:0;">Detect emotions — positive, negative, or neutral — from transcribed speech in real-time.</p>
+            </div>
+            <div class="feature-card glass" style="padding:2rem;border-radius:20px;background:rgba(19,19,31,0.7);border:1px solid rgba(255,255,255,0.06);">
+                <div style="width:48px;height:48px;border-radius:14px;background:rgba(245,158,11,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;">
+                    <i data-lucide="zap" style="width:24px;height:24px;color:#f59e0b;"></i>
+                </div>
+                <h3 style="font-size:1.15rem;font-weight:700;margin:0 0 0.6rem;">Real-Time Processing</h3>
+                <p style="font-size:0.9rem;line-height:1.6;opacity:0.55;margin:0;">Stream audio input and get instant feedback — no waiting, no batch delays.</p>
+            </div>
+            <div class="feature-card glass" style="padding:2rem;border-radius:20px;background:rgba(19,19,31,0.7);border:1px solid rgba(255,255,255,0.06);">
+                <div style="width:48px;height:48px;border-radius:14px;background:rgba(34,211,238,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;">
+                    <i data-lucide="bar-chart-3" style="width:24px;height:24px;color:var(--accent);"></i>
+                </div>
+                <h3 style="font-size:1.15rem;font-weight:700;margin:0 0 0.6rem;">Visual Analytics</h3>
+                <p style="font-size:0.9rem;line-height:1.6;opacity:0.55;margin:0;">Beautiful charts and graphs that track sentiment trends across conversations.</p>
+            </div>
+            <div class="feature-card glass" style="padding:2rem;border-radius:20px;background:rgba(19,19,31,0.7);border:1px solid rgba(255,255,255,0.06);">
+                <div style="width:48px;height:48px;border-radius:14px;background:rgba(139,92,246,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;">
+                    <i data-lucide="code-2" style="width:24px;height:24px;color:var(--accent2);"></i>
+                </div>
+                <h3 style="font-size:1.15rem;font-weight:700;margin:0 0 0.6rem;">Pure Java</h3>
+                <p style="font-size:0.9rem;line-height:1.6;opacity:0.55;margin:0;">Built entirely in Java — clean architecture, modular design, easy to extend.</p>
+            </div>
+            <div class="feature-card glass" style="padding:2rem;border-radius:20px;background:rgba(19,19,31,0.7);border:1px solid rgba(255,255,255,0.06);">
+                <div style="width:48px;height:48px;border-radius:14px;background:rgba(245,158,11,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;">
+                    <i data-lucide="shield-check" style="width:24px;height:24px;color:#f59e0b;"></i>
+                </div>
+                <h3 style="font-size:1.15rem;font-weight:700;margin:0 0 0.6rem;">Privacy First</h3>
+                <p style="font-size:0.9rem;line-height:1.6;opacity:0.55;margin:0;">All processing runs locally — your voice data never leaves your machine.</p>
+            </div>
+        </div>
+
+        <div id="streak-box" style="
+    text-align:center;
+    margin:20px;
+    font-size:1.5rem;
+    font-weight:700;
+">
+            🔥 Streak: <span id="streak-count">0</span> days
+        </div>
+
+        <div id="streak-grid" style="
+    display: grid;
+    grid-template-columns: repeat(7, 20px);
+    gap: 6px;
+    justify-content: center;
+    margin-top: 15px;
+"></div>
+
+    </section><!-- Live Demo -->
+    <section id="demo" class="relative z-10 max-w-4xl mx-auto px-6 py-20">
+        <div id="streak-box" style="
+        text-align:center;
+        margin:20px;
+        font-size:1.5rem;
+        font-weight:700;
+    ">
+            🔥 Streak: <span id="streak-count">0</span> days
+        </div>
+        <h2 class="text-center" style="font-size:clamp(2rem,4vw,2.8rem);font-weight:800;letter-spacing:-0.02em;margin:0 0 1rem;">See It In Action</h2>
+        <p class="text-center" style="opacity:0.5;margin:0 0 3rem;font-size:0.95rem;">Type a sentence and watch SpeakStreak analyze its sentiment.</p>
+        <div class="glass" style="border-radius:24px;background:rgba(19,19,31,0.8);border:1px solid rgba(255,255,255,0.08);padding:2rem;max-width:600px;margin:0 auto;">
+            <div style="display:flex;gap:12px;margin-bottom:1.5rem;">
+                <input id="demo-input" type="text" placeholder="Type something like 'I love this project!'" style="flex:1;padding:14px 18px;border-radius:14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--text);font-size:0.95rem;font-family:'Space Mono',monospace;outline:none;transition:border-color 0.3s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'"> <button id="demo-btn" onclick="analyzeSentiment()" style="padding:14px 24px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0a0a0f;font-weight:700;border:none;cursor:pointer;font-size:0.9rem;font-family:'Syne',sans-serif;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"> Analyze </button>
+            </div>
+
+            <button onclick="loadHistory()" style="
+    padding:10px 20px;
+    border-radius:10px;
+    background:linear-gradient(135deg,#22d3ee,#8b5cf6);
+    color:#0a0a0f;
+    font-weight:600;
+    border:none;
+    cursor:pointer;
+    margin-bottom:15px;
+">
+                View History
+            </button>
+
+            <div id="demo-result" style="min-height:80px;display:flex;align-items:center;justify-content:center;border-radius:14px;background:rgba(255,255,255,0.03);padding:1.5rem;">
+                <span style="opacity:0.3;font-size:0.9rem;font-family:'Space Mono',monospace;">Result will appear here...</span>
+            </div>
+        </div>
+    </section><!-- CTA -->
+    <section id="cta" class="relative z-10 max-w-4xl mx-auto px-6 py-20 text-center">
+        <div class="glass" style="border-radius:28px;background:linear-gradient(135deg,rgba(34,211,238,0.06),rgba(139,92,246,0.06));border:1px solid rgba(255,255,255,0.08);padding:3.5rem 2rem;">
+            <h2 id="cta-heading" style="font-size:clamp(2rem,4vw,2.8rem);font-weight:800;letter-spacing:-0.02em;margin:0 0 1rem;">Ready to Listen?</h2>
+            <p id="cta-description" style="font-size:1rem;opacity:0.55;max-width:500px;margin:0 auto 2rem;line-height:1.7;">Start analyzing speech and sentiment with SpeakStreak. Clone the repo and run your first analysis in minutes.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button onclick="document.getElementById('demo-input').focus()" style="display:inline-flex;align-items:center;gap:8px;padding:16px 36px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0a0a0f;font-weight:700;font-size:1rem;border:none;cursor:pointer;font-family:'Syne',sans-serif;transition:transform 0.3s,box-shadow 0.3s;" onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 8px 30px rgba(34,211,238,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'"> <i data-lucide="play" style="width:18px;height:18px;"></i> Try Demo </button> <button onclick="copyCommand()" id="copy-btn" style="display:inline-flex;align-items:center;gap:8px;padding:16px 36px;border-radius:14px;border:1px solid rgba(255,255,255,0.12);background:transparent;color:var(--text);font-weight:700;font-size:1rem;cursor:pointer;font-family:'Space Mono',monospace;transition:border-color 0.3s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)'"> <i data-lucide="copy" style="width:16px;height:16px;"></i> <span id="copy-text">git clone SpeakStreak</span> </button>
+            </div>
+        </div>
+    </section><!-- Footer -->
+    <footer class="relative z-10 w-full" style="border-top:1px solid rgba(255,255,255,0.05);padding:2rem 0;">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4" style="font-size:0.8rem;opacity:0.4;">
+            <span>© 2025 SpeakStreak — Built with Java ☕</span> <span style="font-family:'Space Mono',monospace;">Speech &amp; Sentiment Recognition</span>
+        </div>
+    </footer>
+</div>
+<script>
+
+    function loadStreakGrid() {
+    fetch("http://localhost:8080/api/speech/history")
+    .then(res => res.json())
+    .then(data => {
+
+        const grid = document.getElementById("streak-grid");
+        grid.innerHTML = "";
+
+        const dates = data.map(d => d.created_at);
+
+        for (let i = 0; i < 30; i++) {
+            let box = document.createElement("div");
+
+            box.style.width = "20px";
+            box.style.height = "20px";
+            box.style.borderRadius = "4px";
+
+            if (i < dates.length) {
+                box.style.background = "#22d3ee"; // active day
+            } else {
+                box.style.background = "#1f1f2e"; // inactive
+            }
+
+            grid.appendChild(box);
+        }
+    });
+}
+
+    function loadStreak() {
+    fetch("http://localhost:8080/api/speech/streak")
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("streak-count").innerText = data;
+    });
+}
+// Login handlers
+    function handleLogin(event) {
+      event.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      const rememberMe = document.getElementById('remember-me').checked;
+
+      if (email && password) {
+        if (rememberMe) localStorage.setItem('speakstreak_user', email);
+        showLoginSuccess();
+        setTimeout(() => {
+          document.getElementById('login-page').style.display = 'none';
+          document.getElementById('app-wrapper').style.display = 'block';
+        }, 800);
+      }
+    }
+
+    function handleSocialLogin(provider) {
+      showLoginSuccess(provider);
+      setTimeout(() => {
+        document.getElementById('login-page').style.display = 'none';
+        document.getElementById('app-wrapper').style.display = 'block';
+      }, 800);
+    }
+
+    function toggleSignUp(event) {
+      event.preventDefault();
+      alert('Sign up page would appear here!');
+    }
+
+    function showLoginSuccess() {
+      const btn = document.querySelector('#login-form button[type="submit"]');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<i data-lucide="check" style="width:18px;height:18px;display:inline;margin-right:8px;vertical-align:text-bottom;"></i> Welcome!';
+      btn.disabled = true;
+      btn.style.opacity = '0.7';
+      lucide.createIcons();
+    }
+
+    // Check if user was remembered
+    window.addEventListener('load', () => { loadStreak();
+    loadStreakGrid();
+      const savedUser = localStorage.getItem('speakstreak_user');
+      if (savedUser) {
+        document.getElementById('login-email').value = savedUser;
+        document.getElementById('remember-me').checked = true;
+      }
+    });
+
+    // Sentiment analyzer demo
+    const positiveWords = ['love','great','amazing','awesome','excellent','happy','good','wonderful','fantastic','beautiful','best','enjoy','brilliant','perfect','super','incredible','delightful','nice','liked','excited'];
+    const negativeWords = ['hate','bad','terrible','awful','horrible','sad','worst','angry','ugly','disgusting','annoying','boring','disappointing','poor','stupid','fail','wrong','broken','useless','frustrating'];
+
+    function analyzeSentiment() {
+      const input = document.getElementById('demo-input').value.trim();
+      const resultEl = document.getElementById('demo-result');
+
+      if (!input) {
+          resultEl.innerHTML = '<span style="opacity:0.5;">Please type something first...</span>';
+          return;
+      }
+
+      // Show loading animation
+      resultEl.innerHTML = "Analyzing your speech... 🎤";
+
+      fetch("http://localhost:8080/api/speech/analyze", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ text: input })
+      })
+      .then(response => response.json())
+      .then(data => {
+
+          let emoji = "😐";
+          let color = "#f59e0b";
+
+          if (data.sentiment === "positive") {
+              emoji = "😊";
+              color = "#22d3ee";
+          } else if (data.sentiment === "negative") {
+              emoji = "😠";
+              color = "#f43f5e";
+          }
+
+          resultEl.innerHTML = `
+              <div style="text-align:center;">
+                  <div style="font-size:2.5rem;">${emoji}</div>
+                  <div style="font-size:1.4rem;font-weight:800;color:${color};">${data.sentiment.toUpperCase()}</div>
+                  <div style="margin-top:10px;font-family:'Space Mono';">"${data.text}"</div>
+                  <div style="margin-top:10px;">Fumbles: ${data.fumbles}</div>
+              </div>
+          `;
+      })
+      .catch(err => {
+          resultEl.innerHTML = "Error connecting to backend";
+          console.error(err);
+      });
+  }
+    document.getElementById('demo-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') analyzeSentiment();
+    });
+
+    function copyCommand() {
+      const t = document.getElementById('copy-text');
+      const orig = t.textContent;
+      t.textContent = '✓ Copied!';
+      setTimeout(() => t.textContent = orig, 1500);
+    }
+
+    // Element SDK
+    const defaultConfig = {
+      hero_title: 'SpeakStreak',
+      hero_subtitle: 'Speech & Sentiment Recognition',
+      hero_description: 'Powered by Java — decode spoken words and detect the emotions behind them in real-time. From voice transcription to sentiment analysis, all in one streak.',
+      features_heading: 'Core Capabilities',
+      cta_heading: 'Ready to Listen?',
+      cta_description: 'Start analyzing speech and sentiment with SpeakStreak. Clone the repo and run your first analysis in minutes.',
+      background_color: '#0a0a0f',
+      surface_color: '#13131f',
+      text_color: '#e8e6f0',
+      accent_color: '#22d3ee',
+      accent2_color: '#8b5cf6',
+      font_family: 'Syne',
+      font_size: 16
+    };
+
+    function applyConfig(config) {
+      const c = { ...defaultConfig, ...config };
+
+      // Text
+      document.getElementById('hero-title').textContent = c.hero_title;
+      document.getElementById('hero-subtitle').textContent = c.hero_subtitle;
+      document.getElementById('hero-description').textContent = c.hero_description;
+      document.getElementById('features-heading').textContent = c.features_heading;
+      document.getElementById('cta-heading').textContent = c.cta_heading;
+      document.getElementById('cta-description').textContent = c.cta_description;
+      document.getElementById('nav-brand').textContent = c.hero_title;
+
+      // Colors
+      document.documentElement.style.setProperty('--bg', c.background_color);
+      document.documentElement.style.setProperty('--surface', c.surface_color);
+      document.documentElement.style.setProperty('--text', c.text_color);
+      document.documentElement.style.setProperty('--accent', c.accent_color);
+      document.documentElement.style.setProperty('--accent2', c.accent2_color);
+      document.body.style.background = c.background_color;
+      document.body.style.color = c.text_color;
+
+      // Font
+      const ff = c.font_family + ", sans-serif";
+      document.body.style.fontFamily = ff;
+      document.querySelectorAll('h1,h2,h3').forEach(el => el.style.fontFamily = ff);
+
+      // Font size
+      const bs = c.font_size;
+      document.getElementById('hero-description').style.fontSize = bs + 'px';
+      document.getElementById('cta-description').style.fontSize = bs + 'px';
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => applyConfig(config),
+        mapToCapabilities: (config) => {
+          const c = { ...defaultConfig, ...config };
+          const makeColor = (key) => ({
+            get: () => c[key] || defaultConfig[key],
+            set: (v) => { c[key] = v; window.elementSdk.setConfig({ [key]: v }); }
+          });
+          return {
+            recolorables: [
+              makeColor('background_color'),
+              makeColor('surface_color'),
+              makeColor('text_color'),
+              makeColor('accent_color'),
+              makeColor('accent2_color')
+            ],
+            borderables: [],
+            fontEditable: {
+              get: () => c.font_family || defaultConfig.font_family,
+              set: (v) => { c.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+            },
+            fontSizeable: {
+              get: () => c.font_size || defaultConfig.font_size,
+              set: (v) => { c.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+            }
+          };
+        },
+        mapToEditPanelValues: (config) => {
+          const c = { ...defaultConfig, ...config };
+          return new Map([
+            ['hero_title', c.hero_title],
+            ['hero_subtitle', c.hero_subtitle],
+            ['hero_description', c.hero_description],
+            ['features_heading', c.features_heading],
+            ['cta_heading', c.cta_heading],
+            ['cta_description', c.cta_description]
+          ]);
+        }
+      });
+    }
+
+    lucide.createIcons();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e7a92040646b630',t:'MTc3NTQxMzI2NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
